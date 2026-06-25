@@ -1,5 +1,4 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
-const path = require('path')
 
 let mainWindow
 
@@ -19,6 +18,7 @@ function createWindow() {
 }
 
 ipcMain.handle('choose-background', async () => {
+  if (!mainWindow) return null
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ['openFile'],
     filters: [{ name: 'Images', extensions: ['jpg', 'jpeg', 'png', 'webp'] }]
@@ -27,19 +27,23 @@ ipcMain.handle('choose-background', async () => {
 })
 
 ipcMain.handle('show-display', (event, width, height) => {
+  if (!mainWindow) return
+  const w = Number.isFinite(width) && width > 0 ? Math.round(width) : 1280
+  const h = Number.isFinite(height) && height > 0 ? Math.round(height) : 720
   mainWindow.setResizable(true)
-  mainWindow.setSize(width, height)
+  mainWindow.setSize(w, h)
   mainWindow.setResizable(false)
   mainWindow.center()
-  mainWindow.loadFile('display.html')
+  mainWindow.loadFile('display.html').catch(err => console.error('Failed to load display.html:', err))
 })
 
 ipcMain.handle('show-settings', () => {
+  if (!mainWindow) return
   mainWindow.setResizable(true)
   mainWindow.setSize(480, 580)
   mainWindow.setResizable(false)
   mainWindow.center()
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('index.html').catch(err => console.error('Failed to load index.html:', err))
 })
 
 app.whenReady().then(createWindow)
