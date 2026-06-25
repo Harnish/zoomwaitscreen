@@ -14,7 +14,7 @@ function createWindow() {
     title: 'Zoom Wait Screen',
     backgroundColor: '#1e1e2e'
   })
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('index.html').catch(err => console.error('Failed to load index.html:', err))
 }
 
 ipcMain.handle('choose-background', async () => {
