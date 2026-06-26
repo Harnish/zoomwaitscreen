@@ -2,6 +2,7 @@ function calculateTargetDate(mode, minutes, timeString) {
   if (mode === 'minutes') {
     return new Date(Date.now() + minutes * 60 * 1000)
   }
+  if (!timeString) return new Date()
   const [hours, mins] = timeString.split(':').map(Number)
   const target = new Date()
   target.setHours(hours, mins, 0, 0)

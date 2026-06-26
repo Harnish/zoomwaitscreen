@@ -56,6 +56,13 @@ describe('calculateTargetDate — time mode', () => {
     expect(target.getHours()).toBe(0)
     expect(target.getMinutes()).toBe(0)
   })
+
+  test('returns current time (past) for null timeString', () => {
+    const before = Date.now()
+    const target = calculateTargetDate('time', null, null)
+    expect(target.getTime()).toBeGreaterThanOrEqual(before - 10)
+    expect(target.getTime()).toBeLessThanOrEqual(Date.now() + 10)
+  })
 })
 
 describe('getRemainingSeconds', () => {

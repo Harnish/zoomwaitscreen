@@ -1,12 +1,14 @@
 const { ipcRenderer } = require('electron')
 const { calculateTargetDate, getRemainingSeconds, formatTime } = require('./countdown')
 
+let navigating = false
+
 function init() {
   const mode = sessionStorage.getItem('mode')
   const bgPath = sessionStorage.getItem('backgroundImagePath')
 
   if (bgPath) {
-    document.body.style.backgroundImage = `url('file://${bgPath.replace(/\\/g, '/')}')`
+    document.body.style.backgroundImage = `url('${encodeURI('file://' + bgPath.replace(/\\/g, '/'))}')`
   }
 
   if (mode === 'away') {
@@ -52,6 +54,8 @@ function startCountdown(targetDate) {
 }
 
 function goBack() {
+  if (navigating) return
+  navigating = true
   ipcRenderer.invoke('show-settings')
 }
 

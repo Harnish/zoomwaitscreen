@@ -28,7 +28,7 @@ document.getElementById('choose-bg').addEventListener('click', async () => {
     backgroundImagePath = filePath
     document.getElementById('bg-filename').textContent = path.basename(filePath)
     const preview = document.getElementById('bg-preview')
-    preview.style.backgroundImage = `url('file://${filePath.replace(/\\/g, '/')}')`
+    preview.style.backgroundImage = `url('${encodeURI('file://' + filePath.replace(/\\/g, '/'))}')`
     preview.classList.remove('hidden')
   }
 })
@@ -97,5 +97,7 @@ document.getElementById('start-btn').addEventListener('click', () => {
   const width = parseInt(document.getElementById('width-input').value, 10) || 1280
   const height = parseInt(document.getElementById('height-input').value, 10) || 720
 
+  sessionStorage.setItem('displayWidth', String(width))
+  sessionStorage.setItem('displayHeight', String(height))
   ipcRenderer.invoke('show-display', width, height)
 })
