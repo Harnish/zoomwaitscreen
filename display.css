@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #1a1a2e;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#display {
+  text-align: center;
+  padding: 40px;
+  max-width: 90%;
+}
+
+.mode-display {
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#away-text {
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: 600;
+  line-height: 1.3;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+#countdown-label {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  font-weight: 400;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  opacity: 0.9;
+}
+
+#countdown-timer {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 700;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+#back-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: white;
+  font-size: 0.78rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+body:hover #back-btn {
+  opacity: 1;
+}
+
+#back-btn:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
