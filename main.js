@@ -1,12 +1,12 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 
 let mainWindow
-let displayWindow = null
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 480,
     height: 580,
+    frame: false,
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
@@ -31,29 +31,24 @@ ipcMain.handle('show-display', (event, width, height) => {
   if (!mainWindow) return
   const w = Number.isFinite(width) && width > 0 ? Math.round(width) : 1280
   const h = Number.isFinite(height) && height > 0 ? Math.round(height) : 720
-  displayWindow = new BrowserWindow({
-    width: w,
-    height: h,
-    frame: false,
-    resizable: false,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    },
-    backgroundColor: '#1a1a2e'
-  })
-  displayWindow.loadFile('display.html').catch(err => console.error('Failed to load display.html:', err))
-  mainWindow.hide()
-  displayWindow.on('closed', () => {
-    displayWindow = null
-    if (mainWindow) mainWindow.show()
-  })
+  mainWindow.setResizable(true)
+  mainWindow.setSize(w, h)
+  mainWindow.setResizable(false)
+  mainWindow.center()
+  mainWindow.loadFile('display.html').catch(err => console.error('Failed to load display.html:', err))
 })
 
 ipcMain.handle('show-settings', () => {
-  if (displayWindow) {
-    displayWindow.close()
-  }
+  if (!mainWindow) return
+  mainWindow.setResizable(true)
+  mainWindow.setSize(480, 580)
+  mainWindow.setResizable(false)
+  mainWindow.center()
+  mainWindow.loadFile('index.html').catch(err => console.error('Failed to load index.html:', err))
+})
+
+ipcMain.handle('quit-app', () => {
+  app.quit()
 })
 
 app.whenReady().then(createWindow)

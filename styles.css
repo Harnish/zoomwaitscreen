@@ -13,12 +13,38 @@ body {
   overflow-y: auto;
 }
 
-h1 {
-  font-size: 1rem;
+.title-bar {
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 12px;
+  margin: -16px -16px 12px;
+  user-select: none;
+}
+
+.title-bar-title {
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 14px;
   color: #cba6f7;
-  text-align: center;
+  padding-left: 8px;
+}
+
+.title-bar-close {
+  -webkit-app-region: no-drag;
+  background: none;
+  border: none;
+  color: #6c7086;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.title-bar-close:hover {
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.1);
 }
 
 .mode-selector {
