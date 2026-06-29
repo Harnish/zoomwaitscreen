@@ -97,7 +97,9 @@ document.getElementById('start-btn').addEventListener('click', () => {
   const width = parseInt(document.getElementById('width-input').value, 10) || 1280
   const height = parseInt(document.getElementById('height-input').value, 10) || 720
 
-  sessionStorage.setItem('displayWidth', String(width))
-  sessionStorage.setItem('displayHeight', String(height))
   ipcRenderer.invoke('show-display', width, height)
+})
+
+document.querySelector('.title-bar-close').addEventListener('click', () => {
+  ipcRenderer.invoke('quit-app')
 })

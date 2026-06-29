@@ -13,7 +13,7 @@ build-linux:
   stage: build
   image: node:20
   before_script:
-    - apt-get update -y && apt-get install -y libopenjp2-tools fuse
+    - apt-get update -y && apt-get install -y fuse
     - npm ci
   script:
     - npm run build
