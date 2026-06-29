@@ -2,16 +2,16 @@
   "name": "zoom-wait-screen",
   "version": "1.0.0",
   "description": "Zoom wait screen — away message and countdown timer for Zoom screen sharing",
+  "author": "josephharnish@gmail.com",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "jest",
     "build": "electron-builder --publish never"
   },
-  "dependencies": {
-    "electron": "39.8.5"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "electron": "39.8.5",
     "electron-builder": "26.15.3",
     "jest": "^29.0.0"
   },
