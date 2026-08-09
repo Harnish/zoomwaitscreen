@@ -3,43 +3,17 @@
   "version": "1.0.0",
   "description": "Zoom wait screen — away message and countdown timer for Zoom screen sharing",
   "author": "josephharnish@gmail.com",
-  "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "tauri dev",
     "test": "jest",
-    "build": "electron-builder --publish never"
+    "build": "tauri build",
+    "tauri": "tauri"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@tauri-apps/api": "^2"
+  },
   "devDependencies": {
-    "electron": "^43.2.0",
-    "electron-builder": "26.15.3",
+    "@tauri-apps/cli": "^2",
     "jest": "^30.4.2"
-  },
-  "build": {
-    "appId": "com.zoomwaitscreen.app",
-    "productName": "Zoom Wait Screen",
-    "files": [
-      "**/*",
-      "!tests/**",
-      "!docs/**",
-      "!.superpowers/**",
-      "!.github/**",
-      "!*.md",
-      "!Dockerfile",
-      "!.dockerignore",
-      "!.gitlab-ci.yml"
-    ],
-    "directories": {
-      "output": "dist"
-    },
-    "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }]
-    },
-    "mac": {
-      "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }]
-    },
-    "linux": {
-      "target": [{ "target": "AppImage", "arch": ["x64"] }]
-    }
   }
 }
