@@ -1,4 +1,4 @@
-const { calculateTargetDate, getRemainingSeconds, formatTime } = require('../countdown')
+const { calculateTargetDate, getRemainingSeconds, formatTime } = require('../web/countdown')
 
 describe('formatTime', () => {
   test('formats 125 seconds as 02:05', () => {
