@@ -1,6 +1,6 @@
 {
   "name": "zoom-wait-screen",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "Zoom wait screen — away message and countdown timer for Zoom screen sharing",
   "author": "josephharnish@gmail.com",
   "scripts": {

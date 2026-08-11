@@ -23,4 +23,6 @@ function formatTime(totalSeconds) {
   return `${pad(m)}:${pad(s)}`
 }
 
-module.exports = { calculateTargetDate, getRemainingSeconds, formatTime }
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { calculateTargetDate, getRemainingSeconds, formatTime }
+}

@@ -1,5 +1,4 @@
-const { ipcRenderer } = require('electron')
-const { calculateTargetDate, getRemainingSeconds, formatTime } = require('./countdown')
+const { invoke, convertFileSrc } = window.__TAURI__.core
 
 let navigating = false
 
@@ -8,7 +7,7 @@ function init() {
   const bgPath = sessionStorage.getItem('backgroundImagePath')
 
   if (bgPath) {
-    document.body.style.backgroundImage = `url('${encodeURI('file://' + bgPath.replace(/\\/g, '/'))}')`
+    document.body.style.backgroundImage = `url('${convertFileSrc(bgPath)}')`
   }
 
   if (mode === 'away') {
@@ -53,10 +52,11 @@ function startCountdown(targetDate) {
   }, 1000)
 }
 
-function goBack() {
+async function goBack() {
   if (navigating) return
   navigating = true
-  ipcRenderer.invoke('show-settings')
+  await invoke('resize_window', { width: 480, height: 580 })
+  window.location.href = 'index.html'
 }
 
 document.getElementById('back-btn').addEventListener('click', goBack)
