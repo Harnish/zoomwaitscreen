@@ -33,16 +33,18 @@ Grab the latest release for your platform from the [Releases](../../releases/lat
 
 ## Development
 
-**Prerequisites:** Node.js 20+
+**Prerequisites:** Node.js 20+, Rust toolchain (for Tauri)
 
 ```bash
 git clone https://github.com/Harnish/zoomwaitscreen.git
 cd zoomwaitscreen
 npm install
-npm start       # run the app
+npm start       # run the app (tauri dev)
 npm test        # run unit tests
-npm run build   # package binaries to dist/
+npm run build   # package binaries via tauri build
 ```
+
+Built with [Tauri](https://tauri.app) — frontend lives in `web/`, Rust shell in `src-tauri/`.
 
 ## CI / Releases
 
