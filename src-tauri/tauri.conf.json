@@ -1,12 +1,13 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Zoom Wait Screen",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "identifier": "com.zoomwaitscreen.app",
   "build": {
     "frontendDist": "../web"
   },
   "app": {
+    "withGlobalTauri": true,
     "windows": [
       {
         "title": "Zoom Wait Screen",

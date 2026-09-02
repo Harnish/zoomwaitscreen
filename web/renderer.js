@@ -1,5 +1,4 @@
-const { ipcRenderer } = require('electron')
-const path = require('path')
+const { invoke, convertFileSrc } = window.__TAURI__.core
 
 let selectedMode = 'away'
 let backgroundImagePath = null
@@ -23,12 +22,12 @@ document.querySelectorAll('input[name="time-mode"]').forEach(radio => {
 })
 
 document.getElementById('choose-bg').addEventListener('click', async () => {
-  const filePath = await ipcRenderer.invoke('choose-background')
+  const filePath = await invoke('choose_background')
   if (filePath) {
     backgroundImagePath = filePath
-    document.getElementById('bg-filename').textContent = path.basename(filePath)
+    document.getElementById('bg-filename').textContent = filePath.split(/[\\/]/).pop()
     const preview = document.getElementById('bg-preview')
-    preview.style.backgroundImage = `url('${encodeURI('file://' + filePath.replace(/\\/g, '/'))}')`
+    preview.style.backgroundImage = `url('${convertFileSrc(filePath)}')`
     preview.classList.remove('hidden')
   }
 })
@@ -48,7 +47,7 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
   })
 })
 
-document.getElementById('start-btn').addEventListener('click', () => {
+document.getElementById('start-btn').addEventListener('click', async () => {
   const errorEl = document.getElementById('error-msg')
   errorEl.classList.add('hidden')
 
@@ -97,9 +96,10 @@ document.getElementById('start-btn').addEventListener('click', () => {
   const width = parseInt(document.getElementById('width-input').value, 10) || 1280
   const height = parseInt(document.getElementById('height-input').value, 10) || 720
 
-  ipcRenderer.invoke('show-display', width, height)
+  await invoke('resize_window', { width, height })
+  window.location.href = 'display.html'
 })
 
 document.querySelector('.title-bar-close').addEventListener('click', () => {
-  ipcRenderer.invoke('quit-app')
+  invoke('quit_app')
 })
