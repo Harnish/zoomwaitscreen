@@ -29,6 +29,7 @@
   },
   "bundle": {
     "active": true,
+    "createUpdaterArtifacts": true,
     "targets": "all",
     "icon": [
       "icons/32x32.png",
@@ -39,6 +40,12 @@
     ],
     "android": {
       "debugApplicationIdSuffix": ".debug"
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVEMjJGMTM0Rjg2MzRFMUIKUldRYlRtUDROUEVpN1NLWUxXTDAyNy9VYi8xQjR6MkY3dUhId0duem5KaHdLVjNWRTYxdjR4eFMK",
+      "endpoints": ["https://github.com/Harnish/zoomwaitscreen/releases/latest/download/latest.json"]
     }
   }
 }

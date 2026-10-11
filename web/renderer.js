@@ -103,3 +103,21 @@ document.getElementById('start-btn').addEventListener('click', async () => {
 document.querySelector('.title-bar-close').addEventListener('click', () => {
   invoke('quit_app')
 })
+
+// Self-update from GitHub release; failures (offline, no release) are ignored.
+async function checkForUpdate() {
+  try {
+    const update = await window.__TAURI__.updater.check()
+    if (!update) return
+    const ok = await window.__TAURI__.dialog.ask(
+      `Version ${update.version} is available. Install and restart?`,
+      { title: 'Update available', kind: 'info' }
+    )
+    if (!ok) return
+    await update.downloadAndInstall()
+    await window.__TAURI__.process.relaunch()
+  } catch (e) {
+    console.warn('update check failed', e)
+  }
+}
+checkForUpdate()
