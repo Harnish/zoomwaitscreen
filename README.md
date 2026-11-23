@@ -2,6 +2,13 @@
 
 A lightweight desktop app for displaying a wait screen while sharing your screen on Zoom. Configure a message or countdown timer, pick a background image, then click **Start Display** — the window expands to your chosen size, ready to share.
 
+## Screenshots
+
+| Away Message | Countdown Timer |
+|:---:|:---:|
+| ![Settings — away message](docs/screenshots/settings-away.png) | ![Settings — countdown timer](docs/screenshots/settings-countdown.png) |
+| ![Away message display](docs/screenshots/display-away.png) | ![Countdown display](docs/screenshots/display-countdown.png) |
+
 ## Features
 
 - **Away Message** — display custom text over a background image
